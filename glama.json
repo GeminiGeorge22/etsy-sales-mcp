@@ -1,4 +1,7 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/server.json",
-  "maintainers": ["GeminiGeorge22"]
+  "maintainers": ["GeminiGeorge22"],
+  "name": "Etsy Sales MCP",
+  "description": "Etsy shop sales velocity and live search listing rows via Apify MCP (publicrecords/etsy-shop-velocity + publicrecords/etsy-search-scraper).",
+  "category": "Web Scraping"
 }
