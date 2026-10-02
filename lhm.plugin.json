@@ -1,0 +1,9 @@
+{
+  "identifier": "geminigeorge22-etsy-sales-mcp",
+  "name": "Etsy Sales MCP",
+  "version": "1.0.0",
+  "description": "Etsy shop sales counters with history plus live Etsy search listing rows, via Apify MCP.",
+  "homepage": "https://github.com/GeminiGeorge22/etsy-sales-mcp",
+  "cloudEndpoint": "https://mcp.apify.com/?tools=publicrecords/etsy-shop-velocity,publicrecords/etsy-search-scraper",
+  "auth": "OAuth/token"
+}

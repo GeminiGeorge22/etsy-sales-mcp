@@ -17,6 +17,7 @@ https://mcp.apify.com/?tools=publicrecords/etsy-shop-velocity,publicrecords/etsy
 | **Etsy Shop Sales Tracker & Scraper** | [publicrecords/etsy-shop-velocity](https://apify.com/publicrecords/etsy-shop-velocity) (listed) | Daily sales / velocity rows for named Etsy shops (counters, history, breakout) |
 | **Etsy Search Scraper** | [publicrecords/etsy-search-scraper](https://apify.com/publicrecords/etsy-search-scraper) (listed) | Live keyword / market / category listing rows (title, price, shop, badges, rank) |
 
+
 Use either path:
 
 - **Apify MCP** (Claude Desktop, Cursor, or any MCP client) with the pin above
@@ -32,6 +33,8 @@ Auth: your own Apify token in the client when prompted. Runs are billed on your 
 |---|---|
 | `actor-start` | $0.005 |
 | `shop-row` | $0.003 |
+| `shop-history-record` | $0.05 |
+| `velocity-record` | $0.10 |
 
 Measured: 2 shops → **$0.011**; 5 shops → **$0.020**. No proxy required.
 
@@ -43,6 +46,19 @@ Measured: 2 shops → **$0.011**; 5 shops → **$0.020**. No proxy required.
 | `listing-row` | $0.006 |
 
 Measured proof run `pRpdAMmfeMHdmuRXA`: 36 complete listing rows → **$0.221**. Works out of the box on **Apify residential proxy** (default; Apify bills proxy usage separately — **no proxy markup** on our PPE). Or plug in your own residential proxy. Blocked pages charge no listing rows.
+
+## Tools
+
+Live `tools/list` against the pin URL (Bearer Apify token). Tool names exposed:
+
+| Tool name | Role |
+|---|---|
+| `publicrecords--etsy-shop-velocity` | Run Etsy Shop Sales Tracker (`publicrecords/etsy-shop-velocity`) |
+| `publicrecords--etsy-search-scraper` | Run Etsy Search Scraper (`publicrecords/etsy-search-scraper`) |
+| `get-actor-run` | Get detailed information about a specific Actor run |
+| `get-dataset-items` | Read items from a run dataset |
+| `get-key-value-store-record` | Read a key-value store record |
+| `abort-actor-run` | Abort a running Actor run |
 
 ## Claude Desktop
 
