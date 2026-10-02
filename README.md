@@ -1,8 +1,10 @@
 # etsy-sales-mcp
 
-Use the **publicrecords** Etsy Actors as MCP tools through [Apify MCP](https://mcp.apify.com).
+Drop-in Etsy data for **sales and marketing software** — CRMs, dashboards, research workflows, and AI assistants — via [Apify’s hosted MCP](https://mcp.apify.com) or the Store Actors directly.
 
-**Disclosure:** I maintain these Actors on Apify Store (`publicrecords`). This repo documents MCP config only — **no Actor source**.
+Pull **Etsy shop sales counters** with history/breakout fields and **live Etsy search listing rows** (title, price, shop, badges, rank) through Apify MCP. **Manifest-only repo — no Actor source.**
+
+**Disclosure:** I maintain these Actors on Apify Store (`publicrecords`). This repo documents MCP / client config only.
 
 ## MCP pin (both Actors)
 
@@ -12,8 +14,13 @@ https://mcp.apify.com/?tools=publicrecords/etsy-shop-velocity,publicrecords/etsy
 
 | Actor | Store / status | Role |
 |---|---|---|
-| **Etsy Shop Sales Tracker & Scraper** | [publicrecords/etsy-shop-velocity](https://apify.com/publicrecords/etsy-shop-velocity) (listed) | Daily sales / velocity rows for named Etsy shops |
-| **Etsy Search Scraper** | [publicrecords/etsy-search-scraper](https://apify.com/publicrecords/etsy-search-scraper) (listed) | Live keyword / market / category listing rows |
+| **Etsy Shop Sales Tracker & Scraper** | [publicrecords/etsy-shop-velocity](https://apify.com/publicrecords/etsy-shop-velocity) (listed) | Daily sales / velocity rows for named Etsy shops (counters, history, breakout) |
+| **Etsy Search Scraper** | [publicrecords/etsy-search-scraper](https://apify.com/publicrecords/etsy-search-scraper) (listed) | Live keyword / market / category listing rows (title, price, shop, badges, rank) |
+
+Use either path:
+
+- **Apify MCP** (Claude Desktop, Cursor, or any MCP client) with the pin above
+- **Store Actors** directly in Apify Console / API for pipelines, CRMs, and dashboards
 
 Auth: your own Apify token in the client when prompted. Runs are billed on your Apify account.
 
@@ -26,7 +33,7 @@ Auth: your own Apify token in the client when prompted. Runs are billed on your 
 | `actor-start` | $0.005 |
 | `shop-row` | $0.003 |
 
-Measured: 2 shops → **$0.011**; 5 shops → **$0.020**.
+Measured: 2 shops → **$0.011**; 5 shops → **$0.020**. No proxy required.
 
 ### Search — `publicrecords/etsy-search-scraper`
 
@@ -35,7 +42,7 @@ Measured: 2 shops → **$0.011**; 5 shops → **$0.020**.
 | `actor-start` | $0.005 |
 | `listing-row` | $0.006 |
 
-Measured proof run `pRpdAMmfeMHdmuRXA`: 36 complete listing rows → **$0.221**. Blocked pages charge no listing rows. You supply a residential proxy (Apify RESIDENTIAL by default).
+Measured proof run `pRpdAMmfeMHdmuRXA`: 36 complete listing rows → **$0.221**. Works out of the box on **Apify residential proxy** (default; Apify bills proxy usage separately — **no proxy markup** on our PPE). Or plug in your own residential proxy. Blocked pages charge no listing rows.
 
 ## Claude Desktop
 
@@ -93,7 +100,7 @@ Sign in with Apify when Cursor prompts.
 
 ### 2) Search — ceramic mug, 3 pages
 
-**Prompt:** Scrape Etsy search for `ceramic mug`, max 3 pages, residential US proxy.
+**Prompt:** Scrape Etsy search for `ceramic mug`, max 3 pages (Apify residential US default).
 
 **Run:** `pRpdAMmfeMHdmuRXA` — SUCCEEDED in 52.561s; 36 listing rows; fill price/shop/title 36/36; Console PPE **$0.221**.
 
