@@ -128,10 +128,13 @@ First three rows (abbreviated): KJPottery $57 bestsellers; BZceramics $35.50 pop
 - Not a substitute for Apify Console billing screens
 - Not affiliated with Etsy, Inc.
 
-## Tutorials
+## Site hubs + tutorials
 
-- Search: https://geminigeorge22.github.io/blog/etsy-search-scraper/
-- Tracker: https://geminigeorge22.github.io/blog/etsy-shop-sales-velocity/
+- Search hub: https://geminigeorge22.github.io/etsy-search-scraper/
+- Tracker hub: https://geminigeorge22.github.io/etsy-shop-velocity/
+- Search tutorial: https://geminigeorge22.github.io/blog/etsy-search-scraper/
+- Tracker tutorial: https://geminigeorge22.github.io/blog/etsy-shop-sales-velocity/
+- Publisher site: https://geminigeorge22.github.io/
 
 ## License
 
