@@ -1,21 +1,21 @@
 ---
-name: etsy-search-scraper
-version: 1.0.0
+name: etsy-search
+version: 1.0.1
 author: GeminiGeorge22
-description: "Live Etsy search listing rows for any keyword, market phrase or category: price, rating, review count, Bestseller / Star Seller / Etsy's Pick badges, ad-vs-organic flag, rank position and shop. Uses Apify Actor publicrecords/etsy-search-scraper through MCP; needs an Apify token (OAuth/token)."
+description: "Etsy search scraper for any keyword, market phrase or category: live listing rows with price, rating, review count, Bestseller / Star Seller / Etsy's Pick badges, ad-vs-organic flag, rank and shop. Uses Apify Actor publicrecords/etsy-search-scraper through MCP; needs an Apify token (OAuth/token)."
 metadata: {"nexscope":{"emoji":"🔎","category":"ecommerce"}}
 ---
 
-# Etsy Search Scraper 🔎
+# Etsy Search 🔎
 
-Give the agent real Etsy search results to reason from: what is actually ranking for a keyword right now, at what price, with which badges, and how much of page 1 is paid.
+**Etsy search** results the agent can reason from: what is actually ranking for a keyword right now, at what price, with which badges, and how much of page 1 is paid. This is the Etsy scraper / Etsy search skill for market research.
 
 Disclosure: I maintain these Actors on Apify Store (publicrecords).
 
 ## Installation
 
 ```bash
-npx skills add GeminiGeorge22/etsy-sales-mcp --skill etsy-search-scraper -g
+npx skills add GeminiGeorge22/etsy-sales-mcp --skill etsy-search -g
 ```
 
 This skill calls the **Etsy Search Scraper** Actor (`publicrecords/etsy-search-scraper`) through the Apify MCP server. Add it to your agent's MCP config once:

@@ -3,7 +3,7 @@
   "maintainers": [
     "GeminiGeorge22"
   ],
-  "name": "Etsy Sales MCP",
-  "description": "Drop-in Etsy data for sales/marketing tools, CRMs, dashboards, and AI assistants: shop sales counters (history/breakout) + live search listing rows (title, price, shop, badges, rank) via Apify MCP. Manifest-only \u2014 no Actor source. publicrecords/etsy-shop-velocity + publicrecords/etsy-search-scraper.",
+  "name": "Etsy Search & Shop Sales MCP",
+  "description": "Etsy search scraper and Etsy shop sales MCP for CRMs, dashboards, and AI assistants: live Etsy search listing rows (title, price, shop, badges, rank) + shop sales counters (history/breakout) via Apify MCP. Manifest-only — no Actor source. Wraps publicrecords/etsy-search-scraper + publicrecords/etsy-shop-velocity.",
   "category": "Web Scraping"
 }

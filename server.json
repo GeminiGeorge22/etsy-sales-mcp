@@ -1,9 +1,10 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.GeminiGeorge22/etsy-sales-mcp",
-  "description": "Etsy shop sales counters with history plus live Etsy search listing rows, via Apify MCP.",
+  "title": "Etsy Search & Shop Sales MCP",
+  "description": "Etsy search + Etsy shop sales: live listing rows and sales counters via Apify MCP.",
   "repository": { "url": "https://github.com/GeminiGeorge22/etsy-sales-mcp", "source": "github" },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "websiteUrl": "https://geminigeorge22.github.io/",
   "remotes": [
     { "type": "streamable-http", "url": "https://mcp.apify.com/?tools=publicrecords/etsy-shop-velocity,publicrecords/etsy-search-scraper" }

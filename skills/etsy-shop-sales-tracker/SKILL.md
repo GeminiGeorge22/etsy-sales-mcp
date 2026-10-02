@@ -1,14 +1,14 @@
 ---
 name: etsy-shop-sales-tracker
-version: 1.0.0
+version: 1.0.1
 author: GeminiGeorge22
-description: "Is this Etsy shop growing, and how fast? Daily sales counters with history, deltas, fitted sales rate and breakout flags for any Etsy shop from a hosted daily panel — no proxy required. Uses Apify Actor publicrecords/etsy-shop-velocity through MCP; needs an Apify token (OAuth/token)."
+description: "Etsy shop sales tracker: is this shop growing, and how fast? Daily sales counters with history, deltas, fitted sales rate and breakout flags for any Etsy shop from a hosted daily panel — no proxy required. Uses Apify Actor publicrecords/etsy-shop-velocity through MCP; needs an Apify token (OAuth/token)."
 metadata: {"nexscope":{"emoji":"📈","category":"ecommerce"}}
 ---
 
 # Etsy Shop Sales Tracker 📈
 
-The question every seller tool guesses at and this one measures: how many sales did a shop make this week, and is that accelerating?
+**Etsy shop sales** the question every seller tool guesses at and this one measures: how many sales did a shop make this week, and is that accelerating?
 
 Disclosure: I maintain these Actors on Apify Store (publicrecords).
 
@@ -61,7 +61,7 @@ Tool call the agent makes (`publicrecords--etsy-shop-velocity`):
 
 ## How it pairs with other skills
 
-- **etsy-search-scraper** — find the shops that own page 1 for a keyword, then ask which of them are growing.
+- **etsy-search** — find the shops that own page 1 for a keyword, then ask which of them are growing.
 
 ## Limits
 
