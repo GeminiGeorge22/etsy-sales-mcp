@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.geminigeorge22/etsy-sales-mcp",
+  "name": "io.github.GeminiGeorge22/etsy-sales-mcp",
   "description": "Etsy shop sales counters with history plus live Etsy search listing rows, via Apify MCP.",
   "repository": { "url": "https://github.com/GeminiGeorge22/etsy-sales-mcp", "source": "github" },
   "version": "1.0.0",
