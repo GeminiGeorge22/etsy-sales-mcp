@@ -6,6 +6,8 @@ Pull **live Etsy search** listing rows (title, price, shop, badges, rank) and **
 
 **Disclosure:** I maintain these Actors on Apify Store (`publicrecords`). This repo documents MCP / client config only.
 
+**Paid Actor (tracked):** [Etsy Shop Sales Tracker & Scraper on Apify](https://publicrecords-redirect.publicrecords.workers.dev/r/awesome-mcp-list) — daily sales / velocity for named Etsy shops.
+
 ## MCP pin (both Actors)
 
 ```
@@ -15,7 +17,7 @@ https://mcp.apify.com/?tools=publicrecords/etsy-shop-velocity,publicrecords/etsy
 | Actor | Store / status | Role |
 |---|---|---|
 | **Etsy Search Scraper** | [publicrecords/etsy-search-scraper](https://apify.com/publicrecords/etsy-search-scraper) (listed) | Live keyword / market / category listing rows (title, price, shop, badges, rank) |
-| **Etsy Shop Sales Tracker & Scraper** | [publicrecords/etsy-shop-velocity](https://apify.com/publicrecords/etsy-shop-velocity) (listed) | Daily sales / velocity rows for named Etsy shops (counters, history, breakout) |
+| **Etsy Shop Sales Tracker & Scraper** | [publicrecords/etsy-shop-velocity](https://publicrecords-redirect.publicrecords.workers.dev/r/awesome-mcp-list) (listed) | Daily sales / velocity rows for named Etsy shops (counters, history, breakout) |
 
 
 Use either path:
