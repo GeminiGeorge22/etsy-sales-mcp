@@ -27,27 +27,27 @@ Use either path:
 
 Auth: your own Apify token in the client when prompted. Runs are billed on your Apify account.
 
-## Pricing (Console PPE, live 2026-10-02)
+## Pricing (as of Oct 28, 2026)
 
-### Search — `publicrecords/etsy-search-scraper`
+Pay per event, billed on your Apify account. Free-plan list prices; Apify Store discounts lower them on paid plans. The Store pricing pages are the live source.
 
-| Event | USD |
+### Search: `publicrecords/etsy-search-scraper` ([Store pricing](https://apify.com/publicrecords/etsy-search-scraper/pricing))
+
+| Event | Price |
 |---|---|
-| `actor-start` | $0.005 |
-| `listing-row` | $0.006 |
+| `listing-row` | 0.4¢ per complete listing (0.34¢ on Gold and up) |
+| `actor-start` | 0.005¢ once per run, only when a complete listing is in hand |
 
-Measured proof run `pRpdAMmfeMHdmuRXA`: 36 complete listing rows → **$0.221**. Works out of the box on **Apify residential proxy** (default; Apify bills proxy usage separately — **no proxy markup** on our PPE). Or plug in your own residential proxy. Blocked pages charge no listing rows.
+A run that returns no rows charges nothing. Works out of the box on **Apify residential proxy** (default; Apify bills proxy usage separately, with **no proxy markup** on our events). Or plug in your own residential proxy. Blocked pages charge no listing rows.
 
-### Tracker — `publicrecords/etsy-shop-velocity`
+### Tracker: `publicrecords/etsy-shop-velocity` ([Store pricing](https://apify.com/publicrecords/etsy-shop-velocity/pricing))
 
-| Event | USD |
+| Event | Price |
 |---|---|
-| `actor-start` | $0.005 |
-| `shop-row` | $0.003 |
-| `shop-history-record` | $0.05 |
-| `velocity-record` | $0.10 |
+| `shop-row` | 0.3¢ per shop row (0.255¢ on Gold and up) |
+| `actor-start` | 0.005¢ once per run, only when the first shop row is ready |
 
-Measured: 2 shops → **$0.011**; 5 shops → **$0.020**. No proxy required.
+Example: 10 shops come to about 3¢ on the Free plan. No proxy required.
 
 ## Tools
 
@@ -85,7 +85,7 @@ Add to `claude_desktop_config.json` (macOS: `~/Library/Application Support/Claud
 }
 ```
 
-Or point the Apify remote MCP URL (with the pin above) if your Claude Desktop build supports remote MCP servers.
+Or point the Apify remote MCP URL (with the pin above) if your Claude Desktop version supports remote MCP servers.
 
 ## Cursor
 
@@ -109,7 +109,7 @@ Sign in with Apify when Cursor prompts.
 
 **Prompt:** Scrape Etsy search for `ceramic mug`, max 3 pages (Apify residential US default).
 
-**Run:** `pRpdAMmfeMHdmuRXA` — SUCCEEDED in 52.561s; 36 listing rows; fill price/shop/title 36/36; Console PPE **$0.221**.
+**Result (2026-10-02):** SUCCEEDED in about 53 s; 36 listing rows; price, shop and title filled on 36/36. At the Oct 28 prices above, 36 rows come to about 14.4¢ on the Free plan.
 
 First three rows (abbreviated): KJPottery $57 bestsellers; BZceramics $35.50 popular_now; Neherpottery $35 bestsellers.
 
@@ -117,7 +117,7 @@ First three rows (abbreviated): KJPottery $57 bestsellers; BZceramics $35.50 pop
 
 **Prompt:** Track sales for Etsy shops `OrelCeramics` and `Bestickend`.
 
-**Run:** `lWWrFPgwZcu6DYYKe` — SUCCEEDED in 5.314s; 2 shop-rows; Console cost **$0.011**; snapshot `2026-09-30`.
+**Result:** SUCCEEDED in about 5 s; 2 shop rows; snapshot `2026-09-30`. At the Oct 28 prices above, 2 shops come to about 0.6¢ on the Free plan.
 
 | shop | sales_count | sales_precision | reviews_count | rating | admirers | listings_active | breakout | snapshot_date |
 |---|---:|---|---:|---:|---:|---:|---|---|
