@@ -7,6 +7,7 @@ All notable changes to this project. Dates are in ET.
 - Python package published on PyPI as `etsy-sales-mcp`: install with `uvx etsy-sales-mcp` or `pip install etsy-sales-mcp`.
 - Python README carries the `mcp-name` line so the official MCP Registry can verify the PyPI package.
 - `server.json` 1.0.2 adds the PyPI package (stdio) next to the hosted remote.
+- `package.json` version follows the Python package to 0.2.1 (a test keeps the two in step); no Node.js code changes.
 
 ## [0.2.0] - 2026-11-02
 
