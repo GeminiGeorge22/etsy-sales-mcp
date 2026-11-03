@@ -3,10 +3,36 @@
   "name": "io.github.GeminiGeorge22/etsy-sales-mcp",
   "title": "Etsy Search & Shop Sales MCP",
   "description": "Etsy search + Etsy shop sales: live listing rows and sales counters via Apify MCP.",
-  "repository": { "url": "https://github.com/GeminiGeorge22/etsy-sales-mcp", "source": "github" },
-  "version": "1.0.1",
+  "repository": {
+    "url": "https://github.com/GeminiGeorge22/etsy-sales-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "etsy-sales-mcp",
+      "version": "0.2.1",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "APIFY_TOKEN",
+          "description": "Your own Apify API token. Needed for tools/call; tools/list works without it.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "version": "1.0.2",
   "websiteUrl": "https://geminigeorge22.github.io/",
   "remotes": [
-    { "type": "streamable-http", "url": "https://mcp.apify.com/?tools=publicrecords/etsy-shop-velocity,publicrecords/etsy-search-scraper" }
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=publicrecords/etsy-shop-velocity,publicrecords/etsy-search-scraper"
+    }
   ]
 }

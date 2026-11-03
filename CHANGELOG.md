@@ -2,6 +2,12 @@
 
 All notable changes to this project. Dates are in ET.
 
+## [python 0.2.1] - 2026-11-03
+
+- Python package published on PyPI as `etsy-sales-mcp`: install with `uvx etsy-sales-mcp` or `pip install etsy-sales-mcp`.
+- Python README carries the `mcp-name` line so the official MCP Registry can verify the PyPI package.
+- `server.json` 1.0.2 adds the PyPI package (stdio) next to the hosted remote.
+
 ## [0.2.0] - 2026-11-02
 
 - `tools/list` and `initialize` now work without a token: tools are served from a checked-in `tools.json` built from each Actor's public input schema (`npm run build:tools`). Tool names follow Apify's gateway pattern (`owner--actor-name`), with descriptions covering what each tool returns and when to use it.
