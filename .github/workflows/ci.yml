@@ -19,6 +19,7 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm ci --no-audit --no-fund
       # Tests run with no Apify token and no network access to Apify.
+      # test/env-guard.test.js fails the suite if APIFY_TOKEN is set.
       - run: npm test
         env:
           APIFY_TOKEN: ""
@@ -30,5 +31,12 @@ jobs:
         with:
           node-version: 22
       - run: npm ci --no-audit --no-fund
+      # Self-test: the check must go red (exit 1) on the committed mismatch fixture.
+      - name: Drift check goes red on the fixture
+        run: |
+          set +e
+          node scripts/build-tools.mjs --check --tools test/fixtures/tools.drift-fixture.json
+          rc=$?
+          if [ "$rc" -ne 1 ]; then echo "drift check did not go red on the fixture (exit $rc)"; exit 1; fi
       # Fails if tools.json no longer matches the Actors' live public input schemas (public API, no token).
       - run: node scripts/build-tools.mjs --check
