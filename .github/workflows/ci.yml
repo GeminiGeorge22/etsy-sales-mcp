@@ -22,7 +22,7 @@ jobs:
       # test/env-guard.test.js fails the suite if APIFY_TOKEN is set.
       - run: npm test
         env:
-          APIFY_TOKEN: ""
+          APIFY_TOKEN: "red-first-dummy"
   tools-drift:
     runs-on: ubuntu-latest
     steps:
