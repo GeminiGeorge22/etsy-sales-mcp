@@ -64,13 +64,33 @@ claude mcp add --transport http etsy-sales "https://mcp.apify.com/?tools=publicr
 }
 ```
 
+## 本地 stdio 服务器（开源）
+
+本仓库在 [`src/`](src/) 中附带一个小型开源 MCP 服务器，适用于只支持本地 stdio 服务器的客户端。它通过 stdio 启动，使用**你自己的** `APIFY_TOKEN` 连接上面的 Apify 托管 MCP 地址，并原样转发 `tools/list` 和 `tools/call`。令牌只放在 `Authorization` 请求头中，不会写入日志。
+
+```json
+{
+  "mcpServers": {
+    "etsy-sales": {
+      "command": "npx",
+      "args": ["-y", "github:GeminiGeorge22/etsy-sales-mcp"],
+      "env": { "APIFY_TOKEN": "YOUR_APIFY_TOKEN" }
+    }
+  }
+}
+```
+
+可选环境变量：`APIFY_ACTORS`（逗号分隔，只启用部分 Actor）和 `APIFY_MCP_URL`（覆盖完整地址）。
+
+测试使用内存中的模拟服务器，不联网、不需要令牌：`npm test`。需要 Node.js 18 及以上版本。
+
 ## 链接
 
 - Etsy Search Scraper: https://apify.com/publicrecords/etsy-search-scraper
 - Etsy Shop Sales Tracker: https://apify.com/publicrecords/etsy-shop-velocity
 - 英文完整说明: [README.md](README.md)
 
-> 本仓库只包含 MCP / 客户端配置，不含 Actor 源码。
+> 本仓库包含 MCP / 客户端配置和一个小型开源 stdio 代理服务器（`src/`），不含 Actor 源码。
 
 ---
 

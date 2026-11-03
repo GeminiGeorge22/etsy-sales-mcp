@@ -4,9 +4,9 @@
 
 **Etsy search** and **Etsy shop sales** data for CRMs, dashboards, research workflows, and AI assistants — live Etsy search listing rows plus shop sales counters — via [Apify’s hosted MCP](https://mcp.apify.com) or the Store Actors directly.
 
-Pull **live Etsy search** listing rows (title, price, shop, badges, rank) and **Etsy shop sales** counters with history/breakout fields through Apify MCP. This is an **Etsy scraper / Etsy MCP** pin for both Actors. **Manifest-only repo — no Actor source.**
+Pull **live Etsy search** listing rows (title, price, shop, badges, rank) and **Etsy shop sales** counters with history/breakout fields through Apify MCP. This is an **Etsy scraper / Etsy MCP** pin for both Actors. **Client config plus a small open-source stdio proxy server. No Actor source.**
 
-**Disclosure:** I maintain these Actors on Apify Store (`publicrecords`). This repo documents MCP / client config only.
+**Disclosure:** I maintain these Actors on Apify Store (`publicrecords`). This repo holds MCP / client config and a small open-source stdio proxy server (`src/`).
 
 **Paid Actor (tracked):** [Etsy Shop Sales Tracker & Scraper on Apify](https://publicrecords-redirect.publicrecords.workers.dev/r/awesome-mcp-list) — daily sales / velocity for named Etsy shops.
 
@@ -126,6 +126,34 @@ First three rows (abbreviated): KJPottery $57 bestsellers; BZceramics $35.50 pop
 | OrelCeramics | 111 | exact | 34 | 5 | 252 | 44 | false | 2026-09-30 |
 | Bestickend | 11400 | rounded | 1830 | 5 | 771 | 44 | false | 2026-09-30 |
 
+## Local stdio server (open source)
+
+This repo also ships a small MCP server in [`src/`](src/) for clients that only run local stdio servers. It starts over stdio, connects to the hosted Apify MCP endpoint above with **your own** `APIFY_TOKEN`, and forwards `tools/list` and `tools/call` unchanged. The token is only sent in the `Authorization` header and is never logged.
+
+```json
+{
+  "mcpServers": {
+    "etsy-sales": {
+      "command": "npx",
+      "args": ["-y", "github:GeminiGeorge22/etsy-sales-mcp"],
+      "env": { "APIFY_TOKEN": "YOUR_APIFY_TOKEN" }
+    }
+  }
+}
+```
+
+Or from a clone:
+
+```bash
+git clone https://github.com/GeminiGeorge22/etsy-sales-mcp.git
+cd etsy-sales-mcp && npm install
+APIFY_TOKEN=YOUR_APIFY_TOKEN node src/server.js
+```
+
+Optional env: `APIFY_ACTORS` (comma-separated subset of the Actors above) and `APIFY_MCP_URL` (full endpoint override).
+
+Tests run against an in-memory mock server, with no network and no token: `npm test`. Requires Node.js 18+.
+
 ## What this repo is not
 
 - Not Actor implementation / Docker / truth sets
@@ -142,6 +170,6 @@ First three rows (abbreviated): KJPottery $57 bestsellers; BZceramics $35.50 pop
 
 ## License
 
-MIT — applies to this documentation and config only.
+MIT — applies to this documentation, config and the proxy server code in `src/`.
 
 Published by the publicrecords maintainer on Apify.

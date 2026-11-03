@@ -1,0 +1,42 @@
+{
+  "name": "etsy-sales-mcp",
+  "version": "0.1.0",
+  "description": "Stdio MCP server for Etsy search listings and Etsy shop sales counters via Apify's hosted MCP gateway",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "etsy-sales-mcp": "src/server.js"
+  },
+  "main": "src/proxy.js",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeminiGeorge22/etsy-sales-mcp.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "apify"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2"
+  },
+  "mcpProxy": {
+    "actors": [
+      "publicrecords/etsy-shop-velocity",
+      "publicrecords/etsy-search-scraper"
+    ]
+  }
+}
