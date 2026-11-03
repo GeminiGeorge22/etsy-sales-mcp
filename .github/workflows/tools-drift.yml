@@ -1,0 +1,37 @@
+name: tools.json drift (weekly)
+on:
+  schedule:
+    - cron: "17 9 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --no-audit --no-fund
+      - name: Compare tools.json with the live public Actor input schemas
+        id: check
+        run: |
+          set -o pipefail
+          node scripts/build-tools.mjs --check 2>&1 | tee drift.txt
+      - name: Open an issue on drift
+        if: failure() && steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="tools.json drift: Actor input schemas changed"
+          if [ -z "$(gh issue list --state open --search "$title in:title" --json number -q '.[].number')" ]; then
+            gh issue create --title "$title" --body "The weekly check found that tools.json no longer matches the public input schemas.
+
+          \`\`\`
+          $(cat drift.txt)
+          \`\`\`
+
+          Fix: run \`npm run build:tools\`, review and commit. Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi

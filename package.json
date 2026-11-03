@@ -1,6 +1,6 @@
 {
   "name": "etsy-sales-mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Stdio MCP server for Etsy search listings and Etsy shop sales counters via Apify's hosted MCP gateway",
   "type": "module",
   "license": "MIT",
@@ -10,12 +10,15 @@
   "main": "src/proxy.js",
   "files": [
     "src",
+    "tools.json",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "start": "node src/server.js",
-    "test": "node --test test/proxy.test.js"
+    "test": "node --test test/proxy.test.js",
+    "build:tools": "node scripts/build-tools.mjs",
+    "check:tools": "node scripts/build-tools.mjs --check"
   },
   "engines": {
     "node": ">=18"

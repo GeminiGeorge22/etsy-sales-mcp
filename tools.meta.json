@@ -1,0 +1,4 @@
+{
+  "publicrecords/etsy-shop-velocity": "Use when you need how many sales an Etsy shop has made, or how fast shops are selling, filtered by shop name, title keyword, category or change date. Returns one row per shop with the measured sales counter and the date it was read.",
+  "publicrecords/etsy-search-scraper": "Use when you need what ranks on Etsy for a keyword, category or market page: position, price, rating, review count, Bestseller/Star Seller badges and whether the listing is an ad."
+}
