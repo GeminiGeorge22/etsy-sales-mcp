@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "etsy-sales-mcp"
+version = "0.2.0"
+description = "Stdio MCP server for Etsy search listings and Etsy shop sales counters via Apify's hosted MCP gateway"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+keywords = ["mcp", "model-context-protocol", "mcp-server", "apify"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: Software Development :: Libraries",
+]
+dependencies = ["mcp>=2.3,<3", "anyio>=4.9"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+etsy-sales-mcp = "etsy_sales_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/GeminiGeorge22/etsy-sales-mcp"
+Source = "https://github.com/GeminiGeorge22/etsy-sales-mcp/tree/main/python"
+Issues = "https://github.com/GeminiGeorge22/etsy-sales-mcp/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/etsy_sales_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "scripts", "README.md", "LICENSE", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
