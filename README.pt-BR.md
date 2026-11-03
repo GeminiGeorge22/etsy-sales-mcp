@@ -69,6 +69,7 @@ claude mcp add --transport http etsy-sales "https://mcp.apify.com/?tools=publicr
 - Etsy Search Scraper: https://apify.com/publicrecords/etsy-search-scraper
 - Etsy Shop Sales Tracker: https://apify.com/publicrecords/etsy-shop-velocity
 - Documentação completa em inglês: [README.md](README.md)
+- Veja também: [Awesome Etsy MCP](https://github.com/GeminiGeorge22/awesome-etsy-mcp) (lista selecionada)
 
 > Este repositório contém só a configuração MCP / do cliente, sem o código dos Actors.
 

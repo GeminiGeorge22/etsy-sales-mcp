@@ -89,6 +89,7 @@ claude mcp add --transport http etsy-sales "https://mcp.apify.com/?tools=publicr
 - Etsy Search Scraper: https://apify.com/publicrecords/etsy-search-scraper
 - Etsy Shop Sales Tracker: https://apify.com/publicrecords/etsy-shop-velocity
 - 英文完整说明: [README.md](README.md)
+- 另见: [Awesome Etsy MCP](https://github.com/GeminiGeorge22/awesome-etsy-mcp) (精选列表)
 
 > 本仓库包含 MCP / 客户端配置和一个小型开源 stdio 代理服务器（`src/`），不含 Actor 源码。
 

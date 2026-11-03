@@ -168,6 +168,10 @@ Tests run against an in-memory mock server, with no network and no token: `npm t
 - Tracker tutorial: https://geminigeorge22.github.io/blog/etsy-shop-sales-velocity/
 - Publisher site: https://geminigeorge22.github.io/
 
+## See also
+
+- [Awesome Etsy MCP](https://github.com/GeminiGeorge22/awesome-etsy-mcp): a curated list of MCP servers for Etsy sellers and e-commerce research.
+
 ## License
 
 MIT — applies to this documentation, config and the proxy server code in `src/`.
