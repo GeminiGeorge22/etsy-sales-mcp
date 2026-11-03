@@ -148,8 +148,8 @@
             "default": true
           },
           "is_best_seller": {
-            "title": "Bestsellers only",
-            "description": "Only return listings marked Bestseller.",
+            "title": "Bestseller badge",
+            "description": "Keeps listings shown with Etsy's Bestseller badge on the search page.",
             "type": "boolean",
             "default": false
           },
