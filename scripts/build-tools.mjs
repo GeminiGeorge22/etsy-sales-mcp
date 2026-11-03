@@ -4,6 +4,8 @@
 //   GET https://api.apify.com/v2/acts/<owner>~<name>/builds/default  (input schema of the default build)
 // Usage: node scripts/build-tools.mjs          -> write tools.json
 //        node scripts/build-tools.mjs --check  -> exit 1 if tools.json differs from the live public schemas
+//        node scripts/build-tools.mjs --check --tools <file> -> compare <file> instead of tools.json
+//          (CI self-test: test/fixtures/tools.drift-fixture.json must make --check exit 1)
 // Never sends an Authorization header; APIFY_TOKEN is ignored on purpose.
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { actorNameToToolName } from "../src/tool-names.js";
@@ -176,7 +178,8 @@ async function main() {
     tools,
   };
   const text = `${JSON.stringify(doc, null, 2)}\n`;
-  const path = new URL("tools.json", root);
+  const i = process.argv.indexOf("--tools");
+  const path = i > 0 && process.argv[i + 1] ? new URL(process.argv[i + 1], new URL(`file://${process.cwd()}/`)) : new URL("tools.json", root);
   if (!check) {
     writeFileSync(path, text);
     console.log(`tools.json: ${tools.length} tools written`);
@@ -184,14 +187,14 @@ async function main() {
   }
   const current = existsSync(path) ? readFileSync(path, "utf8") : "";
   if (current === text) {
-    console.log(`tools.json matches the live public input schemas (${tools.length} tools).`);
+    console.log(`${path.pathname.split("/").pop()} matches the live public input schemas (${tools.length} tools).`);
     return;
   }
   const old = current ? JSON.parse(current).tools || [] : [];
   const oldBy = new Map(old.map((t) => [t.name, JSON.stringify(t)]));
   const drifted = tools.filter((t) => oldBy.get(t.name) !== JSON.stringify(t)).map((t) => t.name);
   const removed = old.filter((t) => !tools.some((n) => n.name === t.name)).map((t) => t.name);
-  console.error(`tools.json drift detected. Changed: ${drifted.join(", ") || "none"}. Removed: ${removed.join(", ") || "none"}.`);
+  console.error(`${path.pathname.split("/").pop()} drift detected. Changed: ${drifted.join(", ") || "none"}. Removed: ${removed.join(", ") || "none"}.`);
   console.error("Run `npm run build:tools`, review the diff and commit.");
   process.exit(1);
 }

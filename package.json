@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "start": "node src/server.js",
-    "test": "node --test test/proxy.test.js",
+    "test": "node --test test/env-guard.test.js test/proxy.test.js",
     "build:tools": "node scripts/build-tools.mjs",
     "check:tools": "node scripts/build-tools.mjs --check"
   },
