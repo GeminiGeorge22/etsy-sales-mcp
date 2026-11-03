@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "etsy-sales-mcp"
-version = "0.2.0"
+version = "0.2.1"
 description = "Stdio MCP server for Etsy search listings and Etsy shop sales counters via Apify's hosted MCP gateway"
 readme = "README.md"
 license = "MIT"
