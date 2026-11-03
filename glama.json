@@ -4,6 +4,6 @@
     "GeminiGeorge22"
   ],
   "name": "Etsy Search & Shop Sales MCP",
-  "description": "Etsy search scraper and Etsy shop sales MCP for CRMs, dashboards, and AI assistants: live Etsy search listing rows (title, price, shop, badges, rank) + shop sales counters (history/breakout) via Apify MCP. Manifest-only — no Actor source. Wraps publicrecords/etsy-search-scraper + publicrecords/etsy-shop-velocity.",
+  "description": "Etsy search scraper and Etsy shop sales MCP for CRMs, dashboards, and AI assistants: live Etsy search listing rows (title, price, shop, badges, rank) + shop sales counters (history/breakout). Hosted remote MCP on Apify's gateway, plus an open-source Node.js stdio proxy in this repo. Wraps publicrecords/etsy-search-scraper + publicrecords/etsy-shop-velocity.",
   "category": "Web Scraping"
 }
