@@ -27,7 +27,7 @@ jobs:
         run: |
           set -o pipefail
           node scripts/build-tools.mjs --check 2>&1 | tee drift.txt
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Python bundled tools.json vs the live public input schemas
