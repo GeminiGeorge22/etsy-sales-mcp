@@ -1,73 +1,91 @@
 ---
 name: etsy-search
-version: 1.0.1
-author: GeminiGeorge22
-description: "Etsy search scraper for any keyword, market phrase or category: live listing rows with price, rating, review count, Bestseller / Star Seller / Etsy's Pick badges, ad-vs-organic flag, rank and shop. Uses Apify Actor publicrecords/etsy-search-scraper through MCP; needs an Apify token (OAuth/token)."
-metadata: {"nexscope":{"emoji":"🔎","category":"ecommerce"}}
+description: "Scrapes live Etsy search results for a keyword, market phrase, or category: listing title, price, rating, review count, Bestseller / Star Seller / Etsy's Pick badges, ad-versus-organic flag, rank, and shop. Use when the user wants what is ranking on Etsy right now, a keyword's price band, or which shops own page-one slots. Runs the Apify Actor publicrecords/etsy-search-scraper through MCP on the user's own Apify account."
+license: MIT
+metadata:
+  author: GeminiGeorge22
+  version: "1.1.0"
 ---
 
-# Etsy Search 🔎
+# Etsy search
 
-**Etsy search** results the agent can reason from: what is actually ranking for a keyword right now, at what price, with which badges, and how much of page 1 is paid. This is the Etsy scraper / Etsy search skill for market research.
+Returns the Etsy search results a logged-out visitor is shown for a keyword, market phrase, or category page: listings with price, rating, review count, badges, ad flag, rank, and shop.
 
-Disclosure: I maintain these Actors on Apify Store (publicrecords).
+The Actor is [publicrecords/etsy-search-scraper](https://apify.com/publicrecords/etsy-search-scraper) on Apify Store.
 
-## Installation
+## Authentication
 
-```bash
-npx skills add GeminiGeorge22/etsy-sales-mcp --skill etsy-search -g
-```
+Runs on **the user's own Apify account**.
 
-This skill calls the **Etsy Search Scraper** Actor (`publicrecords/etsy-search-scraper`) through the Apify MCP server. Add it to your agent's MCP config once:
+- Use an API token the user created in their own Apify Console, or sign in with Apify OAuth when the MCP client prompts.
+- Put that token only in the client's MCP config or environment as `APIFY_TOKEN` (or as `Authorization: Bearer <token>` on the hosted endpoint).
+- Never use a shared, publisher, or third-party token. Never paste a token into chat.
+- `tools/list` works without a token. `tools/call` needs the user's token and runs on that user's Apify account.
+
+## Connect the MCP server
+
+Hosted (this skill's Actor only, or both Etsy Actors from this repo):
 
 ```json
 {
   "mcpServers": {
     "etsy-sales": {
-      "url": "https://mcp.apify.com/?tools=publicrecords/etsy-shop-velocity,publicrecords/etsy-search-scraper",
-      "headers": { "Authorization": "Bearer <APIFY_TOKEN>" }
+      "url": "https://mcp.apify.com/?tools=publicrecords/etsy-search-scraper,publicrecords/etsy-shop-velocity",
+      "headers": { "Authorization": "Bearer <YOUR_APIFY_TOKEN>" }
     }
   }
 }
 ```
 
-Auth: Apify OAuth/token. An Apify account is free; the Actor bills listing rows via Console PPE (see repo README). It runs on Apify residential proxy by default.
+Local stdio:
+
+```json
+{
+  "mcpServers": {
+    "etsy-sales": {
+      "command": "npx",
+      "args": ["-y", "github:GeminiGeorge22/etsy-sales-mcp"],
+      "env": { "APIFY_TOKEN": "<YOUR_APIFY_TOKEN>" }
+    }
+  }
+}
+```
+
+Replace `<YOUR_APIFY_TOKEN>` with the user's own token. A Python package `etsy-sales-mcp` is also available.
 
 ## What a row contains
 
-Field names from a live SUCCEEDED dataset item (F-C125):
-
 | field | meaning |
 |---|---|
-| `query`, `page`, `position`, `surface` | keyword and the exact rank/surface Etsy showed |
+| `query`, `page`, `position`, `surface` | keyword and the rank or surface Etsy showed |
 | `listing_id`, `url`, `title` | the listing |
 | `price`, `currency` | shown price |
-| `rating_value`, `review_count`, `review_count_approx` | rating; `true` when Etsy rounded |
+| `rating_value`, `review_count`, `review_count_approx` | rating; `review_count_approx` is true when Etsy rounded the count |
 | `bestseller`, `popular_now`, `star_seller`, `etsys_pick`, `free_shipping` | badges |
 | `is_ad` | sponsored slot, or `null` when unknown |
 | `shop_name`, `shop_id`, `shop_url` | the seller |
 
 ## Usage
 
-Ask the agent, for example:
+Example prompts:
 
-- "Pull page 1–3 for *personalized dog collar* and tell me the price band, how many slots are ads, and which titles carry Bestseller."
-- "Which shops own the most page-1 slots for *linen apron*?"
+- "Pull pages 1–3 for personalized dog collar and summarize the price band, how many slots are ads, and which titles carry Bestseller."
+- "Which shops own the most page-1 slots for linen apron?"
 
-Tool call the agent makes (`publicrecords--etsy-search-scraper`):
+Tool name: `publicrecords--etsy-search-scraper`.
 
 ```json
 { "queries": ["personalized dog collar"], "maxPages": 3 }
 ```
 
-Optional filters: `is_best_seller`, `is_star_seller`, `free_shipping`, `is_discounted`, `instant_download`, `ship_to` (e.g. `"US"`). `marketPhrases` and `categoryUrls` take Etsy's `/market/` phrases and category pages.
+Optional filters include `is_best_seller`, `is_star_seller`, `free_shipping`, `is_discounted`, `instant_download`, and `ship_to` (for example `"US"`). `marketPhrases` and `categoryUrls` take Etsy's `/market/` phrases and category pages.
 
 ## How it pairs with other skills
 
-- **etsy-shop-sales-tracker** — once the shops are known, check whether they are growing.
+- **etsy-shop-sales-tracker** (same repo) — once the shops are known, check sales-count changes over time.
 
 ## Limits
 
-- Results are what Etsy shows a logged-out visitor from your proxy's region.
+- Results are what Etsy shows a logged-out visitor from the run's proxy region.
 - Etsy caps a query at 20 pages.
-- Blocked pages charge no listing rows.
+- Blocked pages do not return listing rows.
